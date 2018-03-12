@@ -8,13 +8,14 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should able to login" do
-    post '/login', params: { user: {email: 'sobin@gmail.com', password: "admin123" } }
-    assert_response :success
+    user = create(:user)
+    post '/login', params: { user: {email: user.email, password: user.password} }
+    assert_response :redirect
   end
 
-  test "should able to logout" do
+  test "user should able to logout" do
     delete '/logout'
-    assert_response :success
+    assert_response :redirect
   end
 
 end

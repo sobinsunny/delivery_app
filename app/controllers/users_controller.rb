@@ -1,18 +1,23 @@
 class UsersController < ApplicationController
 
   def new
-
   end
 
   def create
-    if  user_params.present?
-      head :ok, content_type: "text/html"
+    build_user
+    if @user.save
+      redirect_to login_path
     else
-      render 'new', status: 500
+      render 'new', status: 400
     end
   end
 
+
 private
+
+def build_user
+ @user = User.new(user_params)
+end
 
 def user_params
   params.require(:user).permit(:name,:email,:password,:password_confirmation)

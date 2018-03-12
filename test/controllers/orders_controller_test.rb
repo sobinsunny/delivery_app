@@ -8,12 +8,13 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get show selected orders" do
-    get orders_path(1)
+    order = create(:order)
+    get orders_path(order.id)
     assert_response :success
   end
 
   test "should get create order" do
-    post orders_path
+    post orders_path ,params: { order:attributes_for(:order) }
     assert_response :success
   end
 

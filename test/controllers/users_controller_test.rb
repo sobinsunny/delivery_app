@@ -8,10 +8,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should able to register" do
-    post '/signup', params: { user: {email: 'sobin@gmail.com', password: "admin123", password_confirmation: "admin 123",name: "Sobin" } }
-    assert_response :success
+    post '/signup', params: { user: {email: 'sobi1234@gmail.com', password: "admin123", password_confirmation: "admin123",name: "Sobin" } }
+    assert_response :redirect
   end
-
-
-
 end
