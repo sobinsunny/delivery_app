@@ -18,7 +18,7 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update the status order" do
-    patch 'orders/1'
+    patch '/orders/1'
     assert_response :success
   end
 
