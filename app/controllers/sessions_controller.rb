@@ -10,10 +10,10 @@ class SessionsController < ApplicationController
     build_session
     if @session.save
       set_user_session
-      flash[:sucess] = 'Succesful'
+      flash[:success]="You succesfully login to account "
       redirect_to orders_path
     else
-      flash[:error] = 'Invalid'
+      flash[:danger] = 'Invalid login'
       render 'new', status: 403
     end
   end

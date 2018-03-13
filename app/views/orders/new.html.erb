@@ -1,17 +1,2 @@
-<h1> New order </h1>
-<%= form_for @order do |form| %>
-  <%= form.label :item_name%>
-  <%= form.text_area :item_name %>
-  <%= form.label :pickup_address%>
-  <%= form.text_area :pickup_address %>
-  <%= form.label :delivery_address%>
-  <%= form.text_area :delivery_address %>
-<%= form.submit%>
-<% end %>
-<div class="List_user_sddress">
-<ul>
-<%@previous_delivery_address.each do |address|%>
-  <li><%=address.delivery_address%></li>
-<%end%>
-</ul>
-</div>
+
+<%=render "orders/form"%>
