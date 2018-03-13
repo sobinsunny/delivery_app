@@ -1,0 +1,13 @@
+<h1>Order Show</h1>
+<div class="content_show">
+  <%=@order.pickup_address%>
+  <%=@order.delivery_address%>
+  <%=@order.created_at%>
+</div>
+<div class="order_path">
+ <ul id="order_path">
+  <%@order.order_transits.each do |transit|%>
+    <li><%=transit.location%> - <%=transit.agent_name%> - <%=transit.agent_phone_number%> </li>
+  <%end%>
+</ul>
+</div>

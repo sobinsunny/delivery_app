@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @previous_delivery_locations  = current_user.orders(:delivery_address).select('distinct delivery_address')
+    @previous_delivery_address = current_user.orders.select('distinct delivery_address')
   end
 
   def show; end
@@ -29,8 +29,7 @@ class OrdersController < ApplicationController
   private
 
   def set_order
-    bind
-    Order.find(params[:id])
+    @order ||= Order.includes(:order_transits).find(params[:id])
   end
 
   def build_order
@@ -38,6 +37,6 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:pickup_address, :delivery_address)
+    params.require(:order).permit(:pickup_address, :delivery_address,:item_name)
   end
 end

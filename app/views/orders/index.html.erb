@@ -1,0 +1,15 @@
+<h1>Your orders</h1>
+
+<%= link_to "New Order", new_order_path%>
+<table>
+
+  <%@orders.each do |order| %>
+     <tr>
+       <%= order.item_name %>
+       <%= order.pickup_address %>
+       <%= order.delivery_address %>
+       <%= order.created_at.strftime("Order at - %m/%d/%Y at %I:%M%p") %>
+     </tr>
+  <% end%>
+
+</table>

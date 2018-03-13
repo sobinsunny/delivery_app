@@ -1,12 +1,9 @@
 require 'test_helper'
 
 class OrderTransitsControllerTest < ActionDispatch::IntegrationTest
-
-
-  test "Should able to create" do
+  test 'Should able to create' do
     order = create(:order)
-    post order_order_transits_path(order), params: { order_transit: attributes_for(:order_transit)}
+    post api_order_transits_path, params: { order_transit: attributes_for(:order_transit),order_id: order.id }
     assert_response :success
   end
-
 end

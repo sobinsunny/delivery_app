@@ -8,7 +8,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should able to login' do
     user = create(:user)
-    post '/login', params: { user: { email: user.email, password: user.password } }
+    post '/login', params: { user_sign_in: { email: user.email, password: user.password } }
     assert_response :redirect
   end
 
