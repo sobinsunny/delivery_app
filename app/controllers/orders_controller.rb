@@ -1,7 +1,6 @@
 class OrdersController < ApplicationController
-
-  # before_acton :authenticate_user
-  before_action :set_order, only: [:show,:edit,:destroy]
+  # before_action :authenticate_user
+  before_action :set_order, only: %i[show edit destroy]
 
   def index
     @orders = Order.all
@@ -18,31 +17,27 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    @previous_delivery_locations  = current_user.orders(:delivery_address)
   end
 
-  def show
+  def show; end
 
+  def edit; end
+
+  def update; end
+
+  private
+
+  def set_order
+    bind
+    Order.find(params[:id])
   end
 
-  def edit
+  def build_order
+    @order = Order.new(order_params.merge(user_id: current_user.id))
   end
 
-  def update
+  def order_params
+    params.require(:order).permit(:pickup_address, :delivery_address)
   end
-
-private
-
- def set_order
-   bind
-   Order.find(params[:id])
- end
-
- def build_order
-   @order = Order.new(order_params.merge(user_id: current_user.id))
- end
-
- def order_params
-   params.require(:order).permit(:pickup_address,:delivery_address)
- end
-
 end

@@ -1,10 +1,8 @@
 class SessionsController < ApplicationController
   # controller for handling user session
-  # before_acton :authenticate_user, only: [:destroy]
+  # before_action :authenticate_user, only: [:destroy]
 
-  def new
-
-  end
+  def new; end
 
   def create
     build_session
@@ -14,7 +12,6 @@ class SessionsController < ApplicationController
     else
       render 'new', status: 403
     end
-
   end
 
   def destroy
@@ -22,7 +19,7 @@ class SessionsController < ApplicationController
     redirect_to login_path
   end
 
-private
+  private
 
   def build_session
     @session = User::SignIn.new(sign_in_params)
@@ -37,8 +34,6 @@ private
   end
 
   def sign_in_params
-    params.require(:user).permit(:email,:password)
+    params.require(:user).permit(:email, :password)
   end
-
-
 end

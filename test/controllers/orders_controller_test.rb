@@ -2,8 +2,14 @@ require 'test_helper'
 
 class OrdersControllerTest < ActionDispatch::IntegrationTest
 
+  def setup
+    user = build_stubbed(:user)
+    post login_url, params: { user: { email: user.email, password: user.password } }
+  end
+
+
   test "should list all user orders" do
-    get orders_path
+    get orders_url
     assert_response :success
   end
 
@@ -14,8 +20,8 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get create order" do
-    post orders_path ,params: { order:attributes_for(:order) }
-    assert_response :success
+    post '/orders' ,params: { order:attributes_for(:order) }
+    assert_response :redirect
   end
 
   test "should update the status order" do

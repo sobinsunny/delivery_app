@@ -4,3 +4,9 @@
 require_relative 'config/application'
 
 Rails.application.load_tasks
+task :test do
+  if Rails.env == "test"
+    puts "--- Databdse cleaning ----"
+    Rake::Task["db:reset"].execute
+  end
+end
