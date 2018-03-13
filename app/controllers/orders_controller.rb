@@ -1,9 +1,9 @@
 class OrdersController < ApplicationController
-  # before_action :authenticate_user
+  before_action :authenticate_user
   before_action :set_order, only: %i[show edit destroy]
 
   def index
-    @orders = Order.all
+    @orders = current_user.orders
   end
 
   def create
@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @previous_delivery_locations  = current_user.orders(:delivery_address)
+    @previous_delivery_locations  = current_user.orders(:delivery_address).select('distinct delivery_address')
   end
 
   def show; end

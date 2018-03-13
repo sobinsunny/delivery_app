@@ -1,2 +1,16 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<h1>Signup</h1>
+
+<div class="signup_form">
+  <%= form_for @user, url: signup_path do |form| %>
+
+    <%=form.label :name%>
+    <%= form.text_field :name %>
+    <%=form.label :email%>
+    <%= form.text_field :email %>
+    <%=form.label :password%>
+    <%= form. password_field :password %>
+    <%=form.label :password_confirmation%>
+    <%= form.password_field :password_confirmation %>
+    <%=form.submit%>
+  <% end %>
+</div>

@@ -2,14 +2,18 @@ class SessionsController < ApplicationController
   # controller for handling user session
   # before_action :authenticate_user, only: [:destroy]
 
-  def new; end
+  def new
+    @session = User::SignIn.new
+  end
 
   def create
     build_session
     if @session.save
       set_user_session
+      flash[:sucess] = 'Succesful'
       redirect_to orders_path
     else
+      flash[:error] = 'Invalid'
       render 'new', status: 403
     end
   end
@@ -34,6 +38,6 @@ class SessionsController < ApplicationController
   end
 
   def sign_in_params
-    params.require(:user).permit(:email, :password)
+    params.require(:user_sign_in).permit(:email, :password)
   end
 end
