@@ -11,10 +11,10 @@ class OrdersController < ApplicationController
   def create
     build_order
     if @order.save
-      flash[:success] = 'Succesfully Orderd'
+      flash[:success] = 'Successfully Orderd'
       redirect_to order_path(@order)
     else
-      flash[:danger] = 'Error Please check your inputs'
+      flash[:danger] = 'Error! '
       render 'new'
     end
   end
@@ -29,10 +29,10 @@ class OrdersController < ApplicationController
 
   def update
     if @order.update(order_params)
-      flash[:success] = 'Succesfully edited Orderd'
+      flash[:success] = 'Succesafully upddated order details'
       redirect_to order_path(@order)
     else
-      flash[:danger] = 'Error Please check your inputs'
+      flash[:danger] = 'Error, Please check your inputs'
       render 'new'
     end
   end

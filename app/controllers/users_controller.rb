@@ -6,10 +6,10 @@ class UsersController < ApplicationController
   def create
     build_user
     if @user.save
-      flash[:success] = 'Signup was succesful'
+      flash[:success] = 'Signup was Successful'
       redirect_to login_path
     else
-      flash[:danger] = 'Sign up was unsuccesful'
+      flash[:danger] = 'Sign up was Unsuccessful'
       render 'new', status: 400
     end
   end
