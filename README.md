@@ -1,24 +1,19 @@
 # README
+## Api
+* API for update Location status from devise
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+POST /api/order_transits
 
-Things you may want to cover:
+```
+{
+	"order_transit" :
+	{
+		"location": "Madiwala",
+		"order_id": "6",
+		"status": "delivered",
+		"agent_name": "Agent Vinod",
+		"agent_phone_number": "12365447889"
+	}
+}
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```

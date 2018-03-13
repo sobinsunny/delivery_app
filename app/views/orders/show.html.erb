@@ -9,6 +9,8 @@
       <h4> Pickup Adress : <%=@order.pickup_address%> </h4>
       <h4> Delivery Address : <%=@order.delivery_address%></h4>
       <h4> Order date : <%=@order.created_at.strftime("%a , %I:%M - %F")%> </h4>
+      <h4> Order status : <%=@order.delivery_status.humanize%> </h4>
+
     </div>
   </div>
 

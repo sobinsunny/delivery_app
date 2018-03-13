@@ -6,5 +6,5 @@ class User < ApplicationRecord
   validates :password, presence: true, confirmation: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
 
-  has_many :orders
+  has_many :orders, dependent: :destroy
 end

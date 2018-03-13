@@ -6,5 +6,5 @@ class Order < ApplicationRecord
   validates :item_name, presence: true
 
   belongs_to :user
-  has_many :order_transits
+  has_many :order_transits, dependent: :destroy
 end
