@@ -26,12 +26,14 @@
     <td>
       <div class="col-md-5 col-md-offset-3">
         <ul class="list-group">
-        <h3>Previous Addres</h3>
+          <h3>Select from previous Address</h3>
         <% previous_address.each do |address|%>
           <% unless address.delivery_address.empty? %>
             <li class="list-group-item" onclick="copyAddressToDelivery(this)">
               <%=address.delivery_address%>
             </li>
+            <%else%>
+
            <%end%>
          <%end%>
        </ul>

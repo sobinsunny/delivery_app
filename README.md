@@ -2,7 +2,7 @@
 ## Api
 * API for update Location status from devise
 
-POST /api/order_transits
+POST https://delivery-app-sobin.herokuapp.com/api/order_transits
 
 ```
 {

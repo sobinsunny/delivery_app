@@ -43,6 +43,7 @@ class OrdersController < ApplicationController
     render text: 'Forbidden', status: 403   unless @order.user_id == current_user.id
   end
 
+  # fetch previous delivery address 
   def previous_address
     @previous_delivery_address = current_user.orders.select('distinct delivery_address')
   end
