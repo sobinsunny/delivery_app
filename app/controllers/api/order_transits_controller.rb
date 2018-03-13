@@ -12,21 +12,18 @@ class Api::OrderTransitsController < ApplicationController
     end
   end
 
-private
+  private
 
- def brodcast_order_update(order_transit)
+  def brodcast_order_update(order_transit)
     ActionCable.server.broadcast('orders',
-        current_location: order_transit.location,
-        order_status: order_transit.order.delivery_status,
-        agent_name:  order_transit.agent_name,
-        order_id: order_transit.order.id,
-        agent_phone_number: order_transit.agent_phone_number
-    )
- end
+                                 current_location: order_transit.location,
+                                 order_status: order_transit.order.delivery_status,
+                                 agent_name:  order_transit.agent_name,
+                                 order_id: order_transit.order.id,
+                                 agent_phone_number: order_transit.agent_phone_number)
+  end
 
- def order_transit_params
-    params.require(:order_transit).permit(:location, :status, :order_id,:agent_name,:agent_phone_number)
- end
-
-
+  def order_transit_params
+    params.require(:order_transit).permit(:location, :status, :order_id, :agent_name, :agent_phone_number)
+  end
 end

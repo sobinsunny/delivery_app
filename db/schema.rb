@@ -10,40 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180313105111) do
-
+ActiveRecord::Schema.define(version: 20_180_313_105_111) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "order_transits", force: :cascade do |t|
-    t.string "location"
-    t.bigint "order_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "agent_name"
-    t.string "agent_phone_number"
-    t.index ["order_id"], name: "index_order_transits_on_order_id"
+  create_table 'order_transits', force: :cascade do |t|
+    t.string 'location'
+    t.bigint 'order_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'agent_name'
+    t.string 'agent_phone_number'
+    t.index ['order_id'], name: 'index_order_transits_on_order_id'
   end
 
-  create_table "orders", force: :cascade do |t|
-    t.string "pickup_address"
-    t.string "delivery_address"
-    t.integer "delivery_status", default: 0
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "item_name"
-    t.index ["user_id"], name: "index_orders_on_user_id"
+  create_table 'orders', force: :cascade do |t|
+    t.string 'pickup_address'
+    t.string 'delivery_address'
+    t.integer 'delivery_status', default: 0
+    t.bigint 'user_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'item_name'
+    t.index ['user_id'], name: 'index_orders_on_user_id'
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "email"
-    t.string "password_digest"
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'users', force: :cascade do |t|
+    t.string 'email'
+    t.string 'password_digest'
+    t.string 'name'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  add_foreign_key "order_transits", "orders"
-  add_foreign_key "orders", "users"
+  add_foreign_key 'order_transits', 'orders'
+  add_foreign_key 'orders', 'users'
 end

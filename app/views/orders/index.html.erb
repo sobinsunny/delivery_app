@@ -1,6 +1,6 @@
 <h1>Your orders</h1>
 
-<%= link_to "New Order", new_order_path%>
+<%= link_to "Create Order", new_order_path, class: 'btn btn-primary right'%>
 <ul class="list-group">
   <%@orders.each do |order| %>
      <li class="list-group-item" style="height: 50px">

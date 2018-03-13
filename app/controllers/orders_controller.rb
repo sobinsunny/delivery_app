@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user
   before_action :set_order, only: %i[show edit update destroy]
+  before_action :check_authorized_user, only: %i[show edit update destroy]
   helper_method :previous_address
 
   def index
@@ -10,10 +11,10 @@ class OrdersController < ApplicationController
   def create
     build_order
     if @order.save
-      flash[:success]="Succesfully Orderd"
+      flash[:success] = 'Succesfully Orderd'
       redirect_to order_path(@order)
     else
-      flash[:danger]="Error Please check your inputs"
+      flash[:danger] = 'Error Please check your inputs'
       render 'new'
     end
   end
@@ -24,24 +25,27 @@ class OrdersController < ApplicationController
 
   def show; end
 
-  def edit;
-  end
+  def edit; end
 
   def update
     if @order.update(order_params)
-      flash[:success]="Succesfully edited Orderd"
+      flash[:success] = 'Succesfully edited Orderd'
       redirect_to order_path(@order)
     else
-      flash[:danger]="Error Please check your inputs"
+      flash[:danger] = 'Error Please check your inputs'
       render 'new'
     end
   end
 
-private
+  private
 
- def previous_address
-   @previous_delivery_address = current_user.orders.select('distinct delivery_address')
- end
+  def check_authorized_user
+    render text: 'Forbidden', status: 403   unless @order.user_id == current_user.id
+  end
+
+  def previous_address
+    @previous_delivery_address = current_user.orders.select('distinct delivery_address')
+  end
 
   def set_order
     @order ||= Order.includes(:order_transits).find(params[:id])
@@ -52,7 +56,6 @@ private
   end
 
   def order_params
-    params.require(:order).permit(:pickup_address, :delivery_address,:item_name)
+    params.require(:order).permit(:pickup_address, :delivery_address, :item_name)
   end
-
 end

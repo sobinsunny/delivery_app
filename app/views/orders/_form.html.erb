@@ -1,7 +1,7 @@
 <table style='width: 100%'>
   <tr>
     <td>
-      <div class="col-md-6 col-md-offset-3">
+      <div class="col-md-8 col-md-offset-1">
         <%= form_for @order do |form| %>
           <div class="form-group">
             <%= form.label :item_name%>
@@ -16,7 +16,7 @@
 
           <div class="form-group">
             <%= form.label :delivery_address %>
-            <%= form.text_area :delivery_address,:class=>'form-control input-md' %>
+            <%= form.text_area :delivery_address,:class=>'form-control input-md',id: 'delivery-text-area' %>
             <%= error_message form,:pickup_address%>
           </div>
           <%= form.submit "Submit",:class=>'btn btn-primary'%>
@@ -24,16 +24,18 @@
       </div>
     </td>
     <td>
-      <ul class="list-group">
+      <div class="col-md-5 col-md-offset-3">
+        <ul class="list-group">
         <h3>Previous Addres</h3>
-      <% previous_address.each do |address|%>
-        <% unless address.delivery_address.empty? %>
-          <li class="list-group-item" onclick="copyAddressToDelivery(this)">
-            <%=address.delivery_address%>
-          </li>
+        <% previous_address.each do |address|%>
+          <% unless address.delivery_address.empty? %>
+            <li class="list-group-item" onclick="copyAddressToDelivery(this)">
+              <%=address.delivery_address%>
+            </li>
+           <%end%>
          <%end%>
-       <%end%>
-     </ul>
+       </ul>
+     </div>
     </td>
   </tr>
 </table>

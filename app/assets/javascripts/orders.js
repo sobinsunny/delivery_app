@@ -1,4 +1,4 @@
 function copyAddressToDelivery(event) {
-  var text = event.target;
-  console.log("Value", text);
+  var deliveryaddress = event.textContent.trim();
+  $('#delivery-text-area').val(deliveryaddress);
 }

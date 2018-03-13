@@ -1,42 +1,49 @@
-
 <%= link_to 'Edit Order',edit_order_path(@order),class: 'btn btn-primary link-item'%>
 
 
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <h3 class="panel-title"> Item - <%=@order.item_name%></h3>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title"> Item - <%=@order.item_name%></h3>
+    </div>
+    <div class="panel-body">
+      <h4> Pickup Adress : <%=@order.pickup_address%> </h4>
+      <h4> Delivery Address : <%=@order.delivery_address%></h4>
+      <h4> Order date : <%=@order.created_at.strftime("%a , %I:%M - %F")%> </h4>
+    </div>
   </div>
-  <div class="panel-body">
-    <h4> Pickup Adress : <%=@order.pickup_address%> </h4>
-    <h4> Delivery Address : <%=@order.delivery_address%></h4>
-    <h4> Order date : <%=@order.created_at.strftime("%a , %I:%M - %F")%> </h4>
-  </div>
-</div>
 
-<table id="order_path-<%=@order.id%>" class="table table-striped" >
-<% if @order.order_transits.present?%>
-    <thead>
-      <tr>
-        <th>Current location</th>
-        <th>Agen Name</th>
-        <th>Agen Contact Number</th>
-        <th>Updated at</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%@order.order_transits.each do |transit|%>
-      <tr>
-        <td><%=transit.location%></td>
-        <td><%=transit.agent_name%></td>
-        <td><%=transit.agent_phone_number%></td>
-        <td><%=transit.updated_at.strftime("%a , %I:%M - %F")%></td>
-      </tr>
-      <% end %>
-    </tbody>
-  <%else%>
-  <p id="no-content-label">
-      NO Transation data updated
-  </p>
-  <%end%>
-</table>
-</div>
+  <table id="order_path-<%=@order.id%>" class="table table-striped">
+    <% if @order.order_transits.present?%>
+      <thead>
+        <tr>
+          <th>Current location</th>
+          <th>Agen Name</th>
+          <th>Agen Contact Number</th>
+          <th>Updated at</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%@order.order_transits.each do |transit|%>
+          <tr>
+            <td>
+              <%=transit.location%>
+            </td>
+            <td>
+              <%=transit.agent_name%>
+            </td>
+            <td>
+              <%=transit.agent_phone_number%>
+            </td>
+            <td>
+              <%=transit.updated_at.strftime("%a , %I:%M - %F")%>
+            </td>
+          </tr>
+          <% end %>
+      </tbody>
+      <%else%>
+        <p id="no-content-label">
+          NO Transation data updated
+        </p>
+        <%end%>
+  </table>
+  </div>

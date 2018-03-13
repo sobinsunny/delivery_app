@@ -3,6 +3,7 @@ class Order < ApplicationRecord
 
   validates :pickup_address, presence: true
   validates :delivery_address, presence: true
+  validates :item_name, presence: true
 
   belongs_to :user
   has_many :order_transits
