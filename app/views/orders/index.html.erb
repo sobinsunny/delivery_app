@@ -1,15 +1,11 @@
 <h1>Your orders</h1>
 
 <%= link_to "New Order", new_order_path%>
-<table>
-
+<ul class="list-group">
   <%@orders.each do |order| %>
-     <tr>
-       <%= order.item_name %>
-       <%= order.pickup_address %>
-       <%= order.delivery_address %>
-       <%= order.created_at.strftime("Order at - %m/%d/%Y at %I:%M%p") %>
-     </tr>
+     <li class="list-group-item" style="height: 50px">
+       <span class="badge"> <%= order.delivery_status.humanize %></span>
+       <%=link_to order.item_name, order_path(order) %>
+     </li>
   <% end%>
-
-</table>
+</ul>
