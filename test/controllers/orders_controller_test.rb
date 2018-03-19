@@ -2,7 +2,7 @@ require 'test_helper'
 
 class OrdersControllerTest < ActionDispatch::IntegrationTest
   def setup
-    user = build_stubbed(:user)
+    user = create(:user)
     post login_url, params: { user_sign_in: { email: user.email, password: user.password } }
   end
 
@@ -17,13 +17,16 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'should get create order' do
-    post '/orders', params: { order: attributes_for(:order) }
-    assert_response :redirect
+  test 'should create an order' do
+    assert_difference "Order.count" do
+      post '/orders', params: { order: attributes_for(:order) }
+    end
   end
 
   test 'should update the status order' do
-    patch '/orders/1'
+    order = create(:order)
+    patch '/orders/#{order.id}'
     assert_response :success
   end
+
 end

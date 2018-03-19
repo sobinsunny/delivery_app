@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     build_session
     if @session.save
       set_user_session
-      flash[:success] = 'You succesAfully login to account '
+      flash[:success] = 'You successfully login to your account'
       redirect_to orders_path
     else
       flash[:danger] = 'Invalid login'
@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
+    session[:user_id], @current_user = nil
     redirect_to login_path
   end
 

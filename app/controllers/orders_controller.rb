@@ -1,6 +1,8 @@
+
 class OrdersController < ApplicationController
   before_action :authenticate_user
   before_action :set_order, only: %i[show edit update destroy]
+  # check authorization to manage  order
   before_action :check_authorized_user, only: %i[show edit update destroy]
   helper_method :previous_address
 
@@ -14,7 +16,7 @@ class OrdersController < ApplicationController
       flash[:success] = 'Successfully Orderd'
       redirect_to order_path(@order)
     else
-      flash[:danger] = 'Error! '
+      flash[:danger] = 'Have Some problem to create order'
       render 'new'
     end
   end
