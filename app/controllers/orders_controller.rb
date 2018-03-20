@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
       render 'new'
     end
   end
-
+ 
   def new
     @order = Order.new
   end
