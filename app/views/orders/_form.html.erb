@@ -13,12 +13,13 @@
             <%= form.text_area :pickup_address,:class=>'form-control input-md' %>
             <%= error_message form,:pickup_address%>
             </div>
-  
-          <div class="form-group">
-            <%= form.label :delivery_address %>
-            <%= form.text_area :delivery_address,:class=>'form-control input-md',id: 'delivery-text-area' %>
-            <%= error_message form,:pickup_address%>
-          </div>
+          <% unless order_delivered? %>
+              <div class="form-group">
+                <%= form.label :delivery_address %>
+                <%= form.text_area :delivery_address,:class=>'form-control input-md',id: 'delivery-text-area' %>
+                <%= error_message form,:pickup_address%>
+              </div>
+          <% end %>
           <%= form.submit "Submit",:class=>'btn btn-primary'%>
          <%end%>
       </div>

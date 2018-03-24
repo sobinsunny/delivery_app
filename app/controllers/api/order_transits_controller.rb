@@ -15,12 +15,7 @@ class Api::OrderTransitsController < ApplicationController
   private
 
   def brodcast_order_update(order_transit)
-    ActionCable.server.broadcast('orders',
-                                 current_location: order_transit.location,
-                                 order_status: order_transit.order.delivery_status,
-                                 agent_name:  order_transit.agent_name,
-                                 order_id: order_transit.order.id,
-                                 agent_phone_number: order_transit.agent_phone_number)
+    OrderUpdateService.inform_client('orders',order_transit)
   end
 
   def order_transit_params

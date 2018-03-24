@@ -1,4 +1,7 @@
+<% unless order_delivered? %>
 <%= link_to 'Edit Order',edit_order_path(@order),class: 'btn btn-primary link-item'%>
+<%end%>
+
   <div class="panel panel-primary">
     <div class="panel-heading">
       <h3 class="panel-title"> Item - <%=@order.item_name%></h3>
