@@ -22,4 +22,10 @@ class OrderTest < ActiveSupport::TestCase
     assert_not_nil order.errors[:user_id]
     assert_not_nil order.errors[:pickup_address]
   end
+
+  test 'Should not update delivery address after delivered' do
+        order = build(:order,:delivered)
+        refute order.valid?
+        assert_not_nil order.errors[:delivery_address]
+  end
 end
