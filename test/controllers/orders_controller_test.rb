@@ -13,7 +13,7 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
     get orders_url
     assert_response :success
   end
-
+  
   test 'should get show selected orders' do
     order = build_stubbed(:order)
     get orders_path(order.id)
@@ -25,11 +25,5 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
       post '/orders', params: { order: attributes_for(:order) }
     end
   end
-
-  # test 'should update the status order' do
-  #   order = (:order)
-  #   patch "/orders/#{order.id}"
-  #   assert_response :success
-  # end
 
 end
