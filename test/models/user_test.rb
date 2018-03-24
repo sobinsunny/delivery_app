@@ -3,7 +3,6 @@ require 'test_helper'
 # Testing Login
 
 class UserTest < ActiveSupport::TestCase
-
   test 'User can able to register' do
     user = build(:user)
     assert user.valid?
@@ -36,5 +35,4 @@ class UserTest < ActiveSupport::TestCase
     user_login = User::SignIn.new(sign_in_params)
     assert user_login.save, 'User Login not wotking'
   end
-  
 end

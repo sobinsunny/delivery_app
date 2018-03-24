@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class OrdersControllerTest < ActionDispatch::IntegrationTest
-
   # Test order controller
 
   def setup
@@ -13,7 +12,7 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
     get orders_url
     assert_response :success
   end
-  
+
   test 'should get show selected orders' do
     order = build_stubbed(:order)
     get orders_path(order.id)
@@ -21,9 +20,8 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create an order' do
-    assert_difference "Order.count" do
+    assert_difference 'Order.count' do
       post '/orders', params: { order: attributes_for(:order) }
     end
   end
-
 end

@@ -1,5 +1,5 @@
 module OrderTransitsHelper
-    def order_delivered?
-        @order.delivered?
-    end
+  def order_delivered?
+    @order.delivered?
+  end
 end

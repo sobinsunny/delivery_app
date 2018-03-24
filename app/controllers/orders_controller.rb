@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
       render 'new'
     end
   end
- 
+
   def new
     @order = Order.new
   end
@@ -42,10 +42,10 @@ class OrdersController < ApplicationController
   private
 
   def check_authorized_user
-    render text: 'Forbidden', status: 403   unless @order.user_id == current_user.id
+    render text: 'Forbidden', status: 403 unless @order.user_id == current_user.id
   end
 
-  # fetch previous delivery address 
+  # fetch previous delivery address
   def previous_address
     @previous_delivery_address = current_user.orders.select('distinct delivery_address')
   end

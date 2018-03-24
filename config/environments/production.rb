@@ -78,9 +78,6 @@ Rails.application.configure do
   config.action_cable.url = 'ws://delivery-app-sobin.herokuapp.com/cable'
   config.action_cable.allowed_request_origins = ['https://delivery-app-sobin.herokuapp.com', 'http://adelivery-app-sobin.herokuapp.com']
 
-
-
-
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')

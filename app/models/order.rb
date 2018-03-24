@@ -10,10 +10,7 @@ class Order < ApplicationRecord
   belongs_to :user
   has_many :order_transits, dependent: :destroy
 
-
   def check_delivery_status
     errors.add(:delivery_address, "Can't update after delivery") if delivered?
   end
-
-
 end

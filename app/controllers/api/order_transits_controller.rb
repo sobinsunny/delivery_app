@@ -15,7 +15,7 @@ class Api::OrderTransitsController < ApplicationController
   private
 
   def brodcast_order_update(order_transit)
-    OrderUpdateService.inform_client('orders',order_transit)
+    OrderUpdateService.inform_client('orders', order_transit)
   end
 
   def order_transit_params
