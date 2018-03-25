@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 
-  resources :orders
+  resources :orders, except: :destroy
 
   namespace :api do
     resources :order_transits, only: [:create]
