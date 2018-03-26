@@ -7,6 +7,7 @@ class OrderTransit < ApplicationRecord
 
   belongs_to :order
   after_save :update_order_status
+  after_create_commit :brodcast_order_update
 
   private
 
@@ -16,4 +17,9 @@ class OrderTransit < ApplicationRecord
     order.delivery_status = status
     order.save
   end
+
+  def brodcast_order_update
+    OrderUpdateService.inform_client('orders', self)
+  end
+  
 end

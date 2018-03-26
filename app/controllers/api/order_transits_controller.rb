@@ -5,7 +5,6 @@ class Api::OrderTransitsController < ApplicationController
   def create
     order_transit = OrderTransit.new(order_transit_params)
     if order_transit.save
-      brodcast_order_update(order_transit)
       render json: order_transit, status: :created
     else
       render json: order_transit, status: 500, message: "Can't able to add"
@@ -13,11 +12,7 @@ class Api::OrderTransitsController < ApplicationController
   end
 
   private
-
-  def brodcast_order_update(order_transit)
-    OrderUpdateService.inform_client('orders', order_transit)
-  end
-
+  
   def order_transit_params
     params.require(:order_transit).permit(:location, :status, :order_id, :agent_name, :agent_phone_number)
   end
