@@ -21,5 +21,5 @@ class OrderTransit < ApplicationRecord
   def brodcast_order_update
     OrderUpdateService.inform_client('orders', self)
   end
-  
+
 end
